@@ -41,39 +41,6 @@ document.querySelector('.page-content__btn').addEventListener('click', function(
 
 
 ;
-
-let btn = document.querySelectorAll('.page-events__btn').forEach(item => {
-    item.addEventListener('click',function(e){
-        e.preventDefault()
-        function generate(){
-            let chip = document.createElement('div')
-            console.log(chip)
-            chip.style.width = '100px'
-            chip.style.height = '30px'
-            chip.style.backgroundColor = 'rgba(101,228,176,0.7)'
-            chip.style.position = 'fixed'
-            chip.style.top = '80px'
-            chip.style.right = '15px'
-            chip.style.padding = '0px 10px'
-            chip.style.lineHeight = '29px'
-            chip.style.textAlign = 'center' 
-            chip.style.borderRadius = '10px'
-            chip.style.textTransform = 'uppercase'
-            chip.style.fontSize = '12px'
-            chip.style.letterSpacing = '0.9px'
-            chip.style.color = '#ffffff'
-            chip.innerHTML = 'registered'
-            const page = document.querySelector('body')
-            page.insertAdjacentElement('afterbegin', chip)
-            setTimeout(function(){
-                chip.remove()
-            }, 1300)
-        }
-        generate()
-        this.style.backgroundColor = 'red'
-    })
-
-});
 const modal = (openSel,modalSel) => {
     const btnOpen = document.querySelectorAll(openSel),
           modalWindow = document.querySelector(modalSel)
@@ -129,3 +96,16 @@ if (animItems.length > 0) {
 	
 	animOnScroll();
 };
+let menu = document.querySelector('.main-page__list')
+menu.addEventListener('click', function(e){
+    let target = e.target
+    if(target.tagName === 'A'){
+        e.preventDefault()
+        let link = document.querySelector(target.hash)
+        let position = link.offsetTop - 70
+        window.scrollTo({
+            top:position,
+            behavior:'smooth',
+        })
+    }
+});
